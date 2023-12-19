@@ -18,9 +18,9 @@ The LLMs index. Uses the [LMStudio Catalog](https://github.com/lmstudio-ai/model
 
 `$ pip install getllms`
 
-
-
 </div>
+
+<br />
 
 ## List All LLMs.
 
@@ -34,7 +34,7 @@ models = getllms.list_models()
 
 <details>
     <summary>Output</summary>
-    <p>
+<p>
 
 ```python
 [
@@ -51,8 +51,10 @@ models = getllms.list_models()
 ]
 ```
 
-    </p>
+</p>
 </details>
+
+<br />
 
 ## See Trained LLMs.
 
@@ -64,7 +66,7 @@ models[0].files # trained samantha 1.1 7b
 
 <details>
     <summary>Output & More</summary>
-    <p>
+<p>
 
 **Output**
 
@@ -89,8 +91,10 @@ Additionally, you can see all the available model files:
 models[0].files.all # [ ModelFile(name='samantha-1.1-llama-…'), … ]
 ```
 
-    </p>
+</p>
 </details>
+
+<br />
 
 ## Download LLMs.
 
@@ -103,13 +107,13 @@ best.download()
 
 <details>
     <summary>Output</summary>
-    <p>
+<p>
 
 ```python
 Downloading... 116.44MB / 5.15GB (0.02%)
 ```
 
-    </p>
+</p>
 </details>
 
 ***
