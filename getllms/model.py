@@ -228,7 +228,7 @@ class ModelFile:
         Args:
             to (str, optional): The file destination.
         """
-        DOWNLOAD(url=self.url, to=to or (self.name + self.format))
+        DOWNLOAD(url=self.url, to=to or (self.name + '.' + self.format))
 
     def __repr__(self):
         return (
