@@ -4,7 +4,7 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "getllms"
-version = "0.2"
+version = "0.3"
 description = "The LLMs Index. Download LLMs to use locally."
 keywords = ["getllms", "llm", "llms", "index", "download", "ai", "gpt", "llama"]
 authors = [

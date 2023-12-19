@@ -110,7 +110,7 @@ best.download()
 <p>
 
 ```python
-Downloading... 116.44MB / 5.15GB (0.02%)
+Downloading... 116.44MB / 5.15GB (2.00%)
 ```
 
 </p>

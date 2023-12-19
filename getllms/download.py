@@ -37,7 +37,7 @@ def unsafe_download(*, url: str, to: str):
         this_t = (
             t +
             f"{rdb_curr} / {rdb_full} "
-            f"\033[2m({(curr/full):.2f}%)\033[0m"
+            f"\033[2m({((curr/full) * 100):.2f}%)\033[0m"
         )
         print(
             "" if initial else "\r" + this_t + " " * (
