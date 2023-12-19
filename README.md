@@ -114,6 +114,53 @@ Downloading... 116.44MB / 5.15GB (0.02%)
 
 ***
 
+<div align="center">
+
+<sub>
+
+Illustration by [Milad Fakurian](https://unsplash.com/@fakurian) on Unplash.
+
+</sub>
+
+<br />
+
+<img src="https://github.com/AWeirdScratcher/getllms/assets/90096971/42c9b72e-cd0c-4a88-85f9-dc0dd06ae7a2" />
+
+# More
+
+User guides, and many more.
+
+Learn how to master `getllms` in under five minutes.
+
+</div>
+
+<br />
+
+<details>
+  <summary>
+    <table>
+      <thead>
+        <tr>
+          <th>Table of Contents</th>
+        </tr>
+      </thead>
+    </table>
+  </summary>
+  <p>
+
+**TOC**
+
+1. [Updating the Catalog](#updating-the-catalog)
+2. [Dataclasses](#dataclasses)
+   - [`Model`](#model)
+   - [`ModelFileCollection`](#modelfilecollection)
+     - `find()`
+   - [`ModelFile`](#modelfile)
+     - `download()`
+    
+  </p>
+</details>
+
 ## Updating the Catalog
 
 When `getllms` is downloaded, the index file is automatically installed inside of `getllms.data` and is already compressed.
