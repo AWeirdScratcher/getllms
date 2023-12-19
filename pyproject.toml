@@ -1,23 +1,32 @@
-[tool.poetry]
-name = "python-template"
-version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
-
-[tool.poetry.dependencies]
-python = ">=3.10.0,<3.11"
-requests = "^2.31.0"
-
-[tool.pyright]
-# https://github.com/microsoft/pyright/blob/main/docs/configuration.md
-useLibraryCodeForTypes = true
-exclude = [".cache"]
-
-[tool.ruff]
-# https://beta.ruff.rs/docs/configuration/
-select = ['E', 'W', 'F', 'I', 'B', 'C4', 'ARG', 'SIM']
-ignore = ['W291', 'W292', 'W293']
-
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["flit_core >=3.2"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "getllms"
+version = "0.1"
+description = "The LLMs Index. Download LLMs to use locally."
+keywords = ["getllms", "llm", "llms", "index", "download", "ai", "gpt", "llama"]
+authors = [
+  { name = "AWeirdDev", email = "aweirdscratcher@gmail.com" },
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.8"
+dependencies = [
+  "requests"
+]
+
+[project.urls]
+"Source" = "https://github.com/AWeirdScratcher/getllms"
+"Bug Tracker" = "https://github.com/AWeirdScratcher/getllms/issues"
+
+[tool.setuptools]
+packages = [
+    "getllms"
+]
