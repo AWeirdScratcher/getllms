@@ -12,7 +12,7 @@ Illustration by [Sean Sinclair](https://unsplash.com/@seanwsinclair) on Unplash.
   alt="Unplash / Sean Sinclair"
   />
 
-# getllms - 0.4
+# getllms - 0.5
 
 The LLMs index. Uses the [LMStudio Catalog](https://github.com/lmstudio-ai/model-catalog).
 
@@ -21,6 +21,26 @@ The LLMs index. Uses the [LMStudio Catalog](https://github.com/lmstudio-ai/model
 </div>
 
 <br />
+
+<details>
+  <summary>
+    <table>
+      <thead>
+        <tr>
+          <th>In This Version</th>
+        </tr>
+      </thead>
+    </table>
+  </summary>
+  <p>
+
+**What's New**
+
+- `0.5`: Support for Notebooks
+- `0.4`: Minor fixes
+
+  </p>
+</details>
 
 ## List All LLMs.
 
