@@ -58,7 +58,7 @@ def unsafe_download(*, url: str, to: str):
             render()
 
     print(
-        f"\rDownloaded. {(time.time() - s):.3f}s\033[?25h"
+        f"\nDownloaded. {(time.time() - s):.3f}s\033[?25h"
     )
 
 
