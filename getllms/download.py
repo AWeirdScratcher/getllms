@@ -52,7 +52,7 @@ def unsafe_download(*, url: str, to: str):
 
     s = time.time()
     with open(to, "wb") as f:
-        for chunk in r.iter_content(4096):
+        for chunk in r.iter_content(4096 * 4):
             f.write(chunk)
             curr += len(chunk)
             render()
