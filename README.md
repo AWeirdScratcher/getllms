@@ -12,7 +12,7 @@ Illustration by [Sean Sinclair](https://unsplash.com/@seanwsinclair) on Unplash.
   alt="Unplash / Sean Sinclair"
   />
 
-# getllms
+# getllms - 0.4
 
 The LLMs index. Uses the [LMStudio Catalog](https://github.com/lmstudio-ai/model-catalog).
 
