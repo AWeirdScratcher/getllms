@@ -86,7 +86,7 @@ def list_models(*, raw=False) -> Union[List[Model], List[list]]:
     """
     data: list = json.loads(read_data())
 
-    return [Model(model) for model in data] if not raw else data
+    return [Model(model) for model in data if model['files']['highlighted'].get('economical')] if not raw else data
 
 def get_model(name: str) -> Model:
     """Get a model.
