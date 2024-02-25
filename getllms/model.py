@@ -79,7 +79,7 @@ class Model:
         return self.d['trainedFor']
 
     @property
-    def files(self) -> ModelFileCollection:
+    def files(self) -> Optional[ModelFileCollection]:
         """Model files.
         
         Usually the trained ones.
@@ -88,11 +88,20 @@ class Model:
             data['name']: ModelFile(data)
             for data in self.d['files']['all']
         }
-        economic = self.d['files']['highlighted']['economical']
+        hl = self.d['files']['highlighted']
+
+        if hl.get('economical'):
+            economic = hl['economical']
+        else:
+            economic = hl.get('most_capable', {'name': "<null>"})
+
         most_cap = self.d['files']['highlighted'].get(
             'most_capable',
             economic
         )
+
+        if economic == "<null>":
+            return None
 
         return ModelFileCollection(
             models,
@@ -116,10 +125,11 @@ class Model:
         
 
     def __repr__(self):
+        files = self.files
         return (
             f"Model(name={self.name!r}, "
             f"description='{self.description[:35]}…', "
-            f"files=[ …({len(self.files)}) ])"
+            f"files=[ …({len(files) if files else 'null'}) ])"
         )
         
 
