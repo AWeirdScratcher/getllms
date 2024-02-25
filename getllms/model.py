@@ -99,6 +99,21 @@ class Model:
             most_cap['name'],
             economic['name']
         )
+    
+    def download(
+        self, 
+        to: Optional[str] = None, 
+        *, 
+        type: Literal["economical", "best"] = "economical"
+    ) -> None:
+        """Download the model.
+        
+        Args:
+            to (str, optional): Save file path.
+            type (Literal["economical", "best"]): Model type.
+        """
+        self.files.download(to=to, type=type)
+        
 
     def __repr__(self):
         return (
@@ -154,6 +169,15 @@ class ModelFileCollection:
         Just like the "economic seat" in planes.
         """
         return self._economic
+    
+    @property
+    def economic(self) -> ModelFile:
+        """Model that matches the minimum system requirements.
+
+        Just like the "economic seat" in planes.
+        """
+        return self._economic
+    
 
     def find(self, name: str) -> ModelFile:
         """Find a model file by name.
@@ -162,6 +186,21 @@ class ModelFileCollection:
             KeyError: Raised when the model is not found.
         """
         return self.m[name]
+    
+    def download(
+        self, 
+        to: Optional[str] = None, 
+        *, 
+        type: Literal["economical", "best"] = "economical"
+    ) -> None:
+        """Download the model.
+        
+        Args:
+            to (str, optional): Save file path.
+            type (Literal["economical", "best"]): Model type.
+        """
+        file: ModelFile = getattr(self, type)
+        file.download(to)
 
     def __repr__(self):
         return f"FileCollection(best={self.most_capable}, +{len(self.all) - 1})"
@@ -222,7 +261,7 @@ class ModelFile:
         """
         return self.f['publisher']
 
-    def download(self, *, to: Optional[str] = None) -> None:
+    def download(self, to: Optional[str] = None) -> None:
         """Download the model.
 
         Args:

@@ -76,9 +76,9 @@ def read_data() -> bytes:
 def list_models(*, raw: Literal[False] = False) -> List[Model]: ...
 
 @overload
-def list_models(*, raw: Literal[True] = True) -> List[dict]: ...
+def list_models(*, raw: Literal[True] = True) -> List[list]: ...
 
-def list_models(*, raw=False) -> Union[List[Model], List[dict]]:
+def list_models(*, raw=False) -> Union[List[Model], List[list]]:
     """List all models.
 
     Args:
@@ -87,3 +87,13 @@ def list_models(*, raw=False) -> Union[List[Model], List[dict]]:
     data: list = json.loads(read_data())
 
     return [Model(model) for model in data] if not raw else data
+
+def get_model(name: str) -> Model:
+    """Get a model.
+    
+    Args:
+        name (str): Model name.
+    """
+    m = { model.name: model for model in list_models() }
+
+    return m[name]
