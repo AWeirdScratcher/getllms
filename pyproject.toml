@@ -31,3 +31,6 @@ dependencies = [
 packages = [
     "getllms"
 ]
+
+[project.scripts]
+getllms = "getllms.cli:main"
