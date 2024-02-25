@@ -1,18 +1,11 @@
 <div align="center">
-<sub>
-
-Illustration by [Sean Sinclair](https://unsplash.com/@seanwsinclair) on Unplash.
-
-</sub>
-
-<br />
 
 <img
   src="https://github.com/AWeirdScratcher/getllms/assets/90096971/3280e416-2e9a-4ae5-965d-c1c69d351d90"
   alt="Unplash / Sean Sinclair"
   />
 
-# getllms - 0.5
+# getllms - 1.2
 
 The LLMs index. Uses the [LMStudio Catalog](https://github.com/lmstudio-ai/model-catalog).
 
@@ -38,6 +31,8 @@ The LLMs index. Uses the [LMStudio Catalog](https://github.com/lmstudio-ai/model
 
 - `0.5`: Support for Notebooks
 - `0.4`: Minor fixes
+- `1.1`: Download updates
+- `1.2`: Added CLI
 
   </p>
 </details>
@@ -58,16 +53,17 @@ models = getllms.list_models()
 
 ```python
 [
-    Model(
-        name='Samantha 1.1 7B',
-        description='Samantha has been trained in philos…',
-        files=[ …(2) ]
-    ),
-    Model(
-        name='Redmond-Puffin-13B-V1.3',
-        description='Redmond-Puffin-13B is one of the wo…',
-        files=[ …(1) ]
-    )
+  Model(
+    name="Google's Gemma 2B Instruct", 
+    description='** Requires LM Studio 0.2.15 or new…', 
+    files=[ …(1) ]
+  ), 
+  Model(
+    name='Mistral 7B Instruct v0.2', 
+    description='The Mistral-7B-Instruct-v0.2 Large …', 
+    files=[ …(2) ]
+  ),
+  ...
 ]
 ```
 
@@ -81,7 +77,9 @@ models = getllms.list_models()
 Get the trained ones for a specific model. Select the one that meets your system requirements.
 
 ```python
-models[0].files # trained samantha 1.1 7b
+# select Google's Gemma 2B Instruct
+model = models[0]
+model.files
 ```
 
 <details>
@@ -92,12 +90,12 @@ models[0].files # trained samantha 1.1 7b
 
 ```python
 FileCollection(
-    best=ModelFile(
-        name='samantha-1.1-llama-7b.ggmlv3.q6_K.bin',
-        size=5528904320,
-        url='https://huggingface.co/TheBlok…'
-    ),
-    +1
+  best=ModelFile(
+    name='gemma-2b-it-q8_0.gguf', 
+    size=2669351840, 
+    url='https://huggingface.co/lmstudi…'
+  ),
+  +0
 )
 ```
 
@@ -108,7 +106,7 @@ FileCollection(
 Additionally, you can see all the available model files:
 
 ```python
-models[0].files.all # [ ModelFile(name='samantha-1.1-llama-…'), … ]
+model.files.all # [ ModelFile(...), ... ]
 ```
 
 </p>
@@ -121,8 +119,7 @@ models[0].files.all # [ ModelFile(name='samantha-1.1-llama-…'), … ]
 Download the LLM that's right for you.
 
 ```python
-best = models[0].files.best
-best.download()
+model.download("model.bin")
 ```
 
 <details>
@@ -130,7 +127,7 @@ best.download()
 <p>
 
 ```python
-Downloading... 116.44MB / 5.15GB (2.00%)
+  0.0% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 900.0KB / 2.5GB (8.7MB/s)
 ```
 
 </p>
@@ -140,139 +137,75 @@ Downloading... 116.44MB / 5.15GB (2.00%)
 
 <div align="center">
 
-<sub>
+<img src="https://github.com/AWeirdScratcher/getllms/assets/90096971/42c9b72e-cd0c-4a88-85f9-dc0dd06ae7a2" alt="Unsplash / Milad Fakurian" />
 
-Illustration by [Milad Fakurian](https://unsplash.com/@fakurian) on Unplash.
+# CLI
 
-</sub>
+Learn how to use the CLI from the help command or refer to this page.
 
-<br />
-
-<img src="https://github.com/AWeirdScratcher/getllms/assets/90096971/42c9b72e-cd0c-4a88-85f9-dc0dd06ae7a2" />
-
-# More
-
-User guides, and many more.
-
-Learn how to master `getllms` in under five minutes.
+```bash
+$ getllms
+```
 
 </div>
 
-<br />
+## List Models.
+
+To list all models, use the `getllms list` command. Note that this truncates down to showing only 5 models. If you wish to list all of them, use `getllms list all` instead.
+
+```bash
+$ getllms list
+```
 
 <details>
-  <summary>
-    <table>
-      <thead>
-        <tr>
-          <th>Table of Contents</th>
-        </tr>
-      </thead>
-    </table>
-  </summary>
-  <p>
+    <summary>Output</summary>
+<p>
 
-**TOC**
+```fix
+Google's Gemma 2B Instruct
 
-1. [Updating the Catalog](#updating-the-catalog)
-2. [Dataclasses](#dataclasses)
-   - [`Model`](#model)
-   - [`ModelFileCollection`](#modelfilecollection)
-     - `find()`
-   - [`ModelFile`](#modelfile)
-     - `download()`
-    
-  </p>
+** Requires LM Studio 0.2.15 or newer ** Gemma is a family of lightweight LLMs built from the same research and technology Google used to create the Gemini models. Gemma models are available in two sizes, 2 billion and 7 billion parameters. These models are trained on up to 6T tokens of primarily English web documents, mathematics, and code, using a transformer architecture with enhancements like Multi-Query Attention, RoPE Embeddings, GeGLU Activations, and advanced normalization techniques.
+
+
+Mistral 7B Instruct v0.2
+
+The Mistral-7B-Instruct-v0.2 Large Language Model (LLM) is an improved instruct fine-tuned version of Mistral-7B-Instruct-v0.1. For full details of this model read MistralAI's blog post and paper.
+
+(...)
+```
+
+</p>
 </details>
 
-## Updating the Catalog
+<br />
 
-When `getllms` is downloaded, the index file is automatically installed inside of `getllms.data` and is already compressed.
+## Download Models.
 
-You can get the latest version of the model catalogue using:
-
-```python
-from getllms import download_model_data, erase_data
-
-erase_data(reload=True) # erase the previous version
-download_model_data() # download the latest ones
-
-# now list all the models.
-```
-
-## Dataclasses
-
-Below is a list of attributes of the dataclasses (from `getllms.model`).
-
-### Model
-
-Represents the info of an LLM model.
+To download a model, use `getllms <model name>`:
 
 ```python
-class Model:
-    name: str
-    date_published: str
-    description: str
-    author: dict[str, str]
-    n_params: str # (e.g., 7B)
-    canonical_url: str
-    download_url: str # note: NOT the raw file
-    trained_for: Literal['chat', 'instruct', 'other']
-    files: ModelFileCollection
+$ getllms "Google's Gemma 2B Instruct"
 ```
 
-### ModelFileCollection
+<details>
+    <summary>Specify model size</summary>
+<p>
 
-A set of model files.
+If you wish to specify the model's size (economical/best), just add the desired size inside of square brackets after the name of the model.
 
 ```python
-class ModelFileCollection:
-    all: List[ModelFile]
-    most_capable: ModelFile
-    best: ModelFile # (alias: most_capable)
-    economical: ModelFile
+$ getllms "Google's Gemma 2B Instruct [economical]"
 ```
 
-#### find()
+</p>
+</details>
 
-Find a model file by name.
-
-Args:
-- name (`str`): The name.
-
-```python
-def find(self, name: str) -> ModelFile
-```
-
-### ModelFile
-
-A model file.
-
-```python
-class ModelFile:
-    name: str
-    url: str
-    size: int
-    quantization: str
-    format: Literal['ggml', 'gguf']
-    publisher: dict[str, str]
-```
-
-#### download()
-
-Download the model.
-
-Args:
-- to (`str`, optional): The file destination.
-
-```python
-def download(self, *, to: Optional[str] = None)
-```
+<br />
 
 ***
 
 <div align="center">
 
-© 2023 AWeirdDev, Catalog by [LMStudio](https://github.com/lmstudio-ai)
+© 2023 AWeirdDev. Catalog by [LMStudio](https://github.com/lmstudio-ai)
 
 </div>
