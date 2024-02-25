@@ -1,7 +1,11 @@
 import re
 import sys
 
+from holdon.escapes import CURSOR, ERASE
+from holdon.progress import human_readable_bytes
+
 from .core import get_model, list_models
+from .model import ModelFile
 
 
 def main():
@@ -13,9 +17,9 @@ def main():
     if command == "list":
         list_fn()
     elif command == "download":
-        download_fn()
+        download_fn(2)
     else:
-        print("download directly")
+        download_fn()
 
 def bold(t: str):
     return "\033[1m%s\033[0m" % t
@@ -33,12 +37,13 @@ def underline(t: str):
     return "\033[4m%s\033[0m" % t
 
 def help_fn(_exit: bool = True):
+    model_arg = f"{red('<model name>')} | {red('<name[economical | best]>')}"
     print(f"""
-{bold('getllms')} {red('<model name>')} - Download a model.
+{bold('getllms')} {model_arg} - Download a model.
 
 Commands:
     {dark('getllms')} {blue('list')} - List all available models.
-    {dark('getllms')} {blue('download')} {red('<model name>')} - Download a model.
+    {dark('getllms')} {blue('download')} {model_arg} - Download a model.
 """)
     if _exit:
         exit()
@@ -54,8 +59,8 @@ def list_fn():
     if truncate:
         print(dark("truncated to 5 models. use `getllms list all` to list all.\n"))
 
-def download_fn():
-    model_name = sys.argv[2] if len(sys.argv) >= 3 else None
+def download_fn(level: int = 1):
+    model_name = sys.argv[level] if len(sys.argv) >= level + 1 else None
 
     if not model_name:
         help_fn(False)
@@ -81,7 +86,20 @@ def download_fn():
         print(red(f"Cannot find model {model_name!r}"))
         exit(1)
 
+    file: ModelFile = getattr(model.files, type_)
+    print(f"\n{blue('[getllms]')} {bold(name)} {dark(f'({type_})')}")
+    print(
+        blue("[getllms] ") + 
+        red(
+            "size: " + human_readable_bytes(file.size)
+        )
+    )
+    input(
+        blue("[getllms] ") + "enter to continue"
+    )
+    print(CURSOR.prev_line_begin() + ERASE.ENTIRE_LINE)
+
     model.download(
-        sys.argv[3] if len(sys.argv) >= 4 else None,
+        sys.argv[level + 1] if len(sys.argv) >= level + 2 else None,
         type=type_
     )
